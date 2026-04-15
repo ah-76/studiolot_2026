@@ -1,11 +1,8 @@
-export function SceneCopyPanel({
-  title,
-  description,
-}) {
+export function SceneCopyPanel({ section, detailsHtml }) {
   return (
-    <section className="copy-panel">
-      <h2 className="copy-panel__title">{title}</h2>
-      <p className="copy-panel__description">{description}</p>
-    </section>
+    <div className="centered-text">
+      {section ? <span className="section-heading">{section}</span> : null}
+      <span dangerouslySetInnerHTML={{ __html: detailsHtml }} />
+    </div>
   );
 }
