@@ -7,15 +7,10 @@ const sceneMap = Object.fromEntries(sceneList.map((scene) => [scene.id, scene]))
 export default function App() {
   const [activeSceneId, setActiveSceneId] = useState("home");
 
-  const activeScene = sceneMap[activeSceneId] ?? sceneMap.home;
-
   return (
-    <div
-      className="app-shell"
-      style={{ "--scene-backdrop": `url(${activeScene.backdrop})` }}
-    >
+    <div className="app-shell">
       <StudioLotShell
-        activeScene={activeScene}
+        activeScene={sceneMap[activeSceneId] ?? sceneMap.home}
         scenes={sceneList}
         onSceneChange={setActiveSceneId}
       />

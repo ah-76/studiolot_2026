@@ -7,13 +7,9 @@ export function MessagesScene({ scene }) {
       <SceneCopyPanel {...scene} />
 
       <section className="messages-stage">
-        <div className="messages-stage__hero">
-          <img src={scene.asset} alt="Messages and notifications concept art" />
-        </div>
-
         <div className="messages-stage__panels">
           <div className="messages-panel">
-            <p className="messages-panel__kicker">Active Threads</p>
+            <h3 className="messages-panel__title">Messages</h3>
             {messageThreads.map((thread) => (
               <article className="thread-card" key={thread.id}>
                 <div className="thread-card__header">
@@ -26,11 +22,10 @@ export function MessagesScene({ scene }) {
           </div>
 
           <div className="messages-panel">
-            <p className="messages-panel__kicker">Notification Feed</p>
+            <h3 className="messages-panel__title">Notifications</h3>
             <div className="notification-feed">
               {notificationFeed.map((item) => (
                 <div className="notification-feed__item" key={item}>
-                  <span className="notification-feed__dot" />
                   <span>{item}</span>
                 </div>
               ))}

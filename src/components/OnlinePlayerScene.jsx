@@ -44,15 +44,8 @@ export function OnlinePlayerScene({ scene, isActive }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isDialogueMuted, setIsDialogueMuted] = useState(false);
   const [isMusicMuted, setIsMusicMuted] = useState(false);
-  const [hoverState, setHoverState] = useState({
-    visible: false,
-    left: 0,
-    time: 0,
-  });
   const [activeComment, setActiveComment] = useState(null);
-  const [showHint, setShowHint] = useState(true);
   const [isShareOpen, setIsShareOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     const ambience = new Audio("/assets/riversong3.flac");
@@ -65,18 +58,6 @@ export function OnlinePlayerScene({ scene, isActive }) {
       ambienceRef.current = null;
     };
   }, []);
-
-  useEffect(() => {
-    if (!toastMessage) {
-      return undefined;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setToastMessage("");
-    }, 2200);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [toastMessage]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -140,8 +121,6 @@ export function OnlinePlayerScene({ scene, isActive }) {
     if (!video) {
       return;
     }
-
-    setShowHint(false);
 
     if (video.paused) {
       video.play().catch(() => {});
@@ -256,23 +235,6 @@ export function OnlinePlayerScene({ scene, isActive }) {
     setCurrentTime(nextTime);
   }
 
-  function handleTimelineMove(event) {
-    const timeline = timelineRef.current;
-
-    if (!timeline || !duration) {
-      return;
-    }
-
-    const rect = timeline.getBoundingClientRect();
-    const percentage = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-
-    setHoverState({
-      visible: true,
-      left: percentage * 100,
-      time: percentage * duration,
-    });
-  }
-
   function handleShareOpen() {
     const video = videoRef.current;
 
@@ -283,11 +245,8 @@ export function OnlinePlayerScene({ scene, isActive }) {
     setIsShareOpen(true);
   }
 
-  function handleShareSend(payload) {
-    const recipients = payload.targets.length > 0 ? payload.targets.join(", ") : "team";
-    const label = payload.label || "InstantSync";
+  function handleShareSend() {
     setIsShareOpen(false);
-    setToastMessage(`${label} sent to ${recipients}.`);
   }
 
   function handleFullscreen() {
@@ -324,12 +283,6 @@ export function OnlinePlayerScene({ scene, isActive }) {
               onClick={togglePlayPause}
             />
 
-            {showHint ? (
-              <div className="player-frame__hint">
-                Click the video or tap spacebar to play and pause. Use the timeline to locate moments.
-              </div>
-            ) : null}
-
             {activeComment ? (
               <div className="player-frame__comment">
                 <span className="player-frame__comment-index">{activeComment.label}</span>
@@ -345,23 +298,14 @@ export function OnlinePlayerScene({ scene, isActive }) {
               ref={timelineRef}
               className="timeline"
               onClick={handleTimelineClick}
-              onMouseMove={handleTimelineMove}
-              onMouseLeave={() =>
-                setHoverState((current) => ({
-                  ...current,
-                  visible: false,
-                }))
-              }
             >
-              <img className="timeline__waveform" src="/assets/waveform.png" alt="" />
+              <div className="timeline__waveform" aria-hidden="true" />
               <div className="timeline__base" />
               <div className="timeline__progress" style={{ width: `${progressPercent}%` }} />
               <div
                 className="timeline__music-bed"
                 style={{ left: `${cuePercent}%`, width: `${100 - cuePercent}%` }}
-              >
-                <img src="/assets/musicwave2.png" alt="" />
-              </div>
+              />
 
               {playerMarkers.map((marker) => {
                 const left = duration ? (marker.time / duration) * 100 : 0;
@@ -373,12 +317,6 @@ export function OnlinePlayerScene({ scene, isActive }) {
                   </div>
                 );
               })}
-
-              {hoverState.visible ? (
-                <div className="timeline__tooltip" style={{ left: `${hoverState.left}%` }}>
-                  {formatTime(hoverState.time)}
-                </div>
-              ) : null}
             </div>
 
             <span className="timeline-shell__label timeline-shell__label--music">Music</span>
@@ -425,8 +363,6 @@ export function OnlinePlayerScene({ scene, isActive }) {
       {isShareOpen ? (
         <ShareModal onClose={() => setIsShareOpen(false)} onSend={handleShareSend} />
       ) : null}
-
-      {toastMessage ? <div className="player-toast">{toastMessage}</div> : null}
     </div>
   );
 }
@@ -463,8 +399,7 @@ function ShareModal({ onClose, onSend }) {
       <form className="share-modal__panel" onSubmit={handleSubmit}>
         <div className="share-modal__header">
           <div>
-            <p className="share-modal__kicker">Share InstantSync</p>
-            <h3 className="share-modal__title">Route this review moment to the next creative pass.</h3>
+            <h3 className="share-modal__title">Share InstantSync</h3>
           </div>
 
           <button className="share-modal__close" type="button" onClick={onClose}>

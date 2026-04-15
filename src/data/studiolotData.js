@@ -3,75 +3,29 @@ export const AMBIENT_CUE_SECONDS = 270;
 export const sceneList = [
   {
     id: "home",
-    glyph: "00",
     navLabel: "StudioLot",
-    eyebrow: "Integrated real-time creative collaboration",
     title: "STUDIOLOT",
     description:
-      "Integrated real-time creative collaboration for film and TV. Shared cloud media, direct messaging, InstantSync playback, searchable references, and clear creative context in one place.",
-    features: [
-      "Central cloud media with tags and permissions",
-      "Timeline review with comments stored to exact moments",
-      "Messaging, notifications, and project visibility",
-    ],
-    footerNote: "Compact concept demo. Four core ideas.",
-    asset: "/assets/image1.png",
-    backdrop: "/assets/image1.png",
-    accent: "sage",
+      "Shared media, synced review, reference search, and team messaging for film and TV.",
   },
   {
     id: "library",
-    glyph: "01",
     navLabel: "Cloud Library",
-    eyebrow: "Reference import and discovery",
     title: "Cloud Library",
-    description:
-      "Upload sound, video, music, image, and text. Organize with tags, team permissions, searchable metadata, and direct web reference intake.",
-    features: [
-      "Fast reference intake from the web",
-      "Creative tagging and filter-ready structure",
-      "Team visibility with project-aware context",
-    ],
-    footerNote: "Live search remains demo-only via environment key.",
-    asset: "/assets/image4.png",
-    backdrop: "/assets/image4.png",
-    accent: "brass",
+    description: "Search references and collect media in one place.",
   },
   {
     id: "player",
-    glyph: "02",
     navLabel: "Online Player",
-    eyebrow: "InstantSync review and playback",
     title: "Online Player",
-    description:
-      "Play, pause, locate, comment, and share a review state instantly. Creative decisions stay anchored to the timeline and can be shared as a moment, not just a file.",
-    features: [
-      "Timeline markers and cue-based comment surfacing",
-      "Independent dialogue and music control",
-      "Shareable InstantSync with labeled creative notes",
-    ],
-    footerNote: "This scene carries the main legacy interaction behavior.",
+    description: "Play, cue, comment, and share exact moments.",
     asset: "/assets/examplevideo.mp4",
-    backdrop: "/assets/image3.png",
-    accent: "sage",
   },
   {
     id: "messages",
-    glyph: "03",
     navLabel: "Messages",
-    eyebrow: "Notifications and communication",
-    title: "Messages & Notifications",
-    description:
-      "Private or group threads tied to real creative work. Uploads, InstantSync shares, review requests, and project updates stay connected to the content they refer to.",
-    features: [
-      "Context-rich media conversations",
-      "Upload and review notifications in one stream",
-      "A team dashboard feel without losing warmth",
-    ],
-    footerNote: "Communication stays attached to the work itself.",
-    asset: "/assets/image2.png",
-    backdrop: "/assets/image2.png",
-    accent: "brass",
+    title: "Messages",
+    description: "Threads and notifications tied to the work.",
   },
 ];
 
@@ -102,41 +56,26 @@ export const shareTargets = [
   "Sound Designer",
 ];
 
-export const searchSuggestions = [
-  "cinematic river scene sound design",
-  "film editor workflow",
-  "dark moody title sequence references",
-  "boat sequence music cues",
-];
-
 export const demoReferenceResults = [
   {
     id: "demo-1",
     title: "Cinematic river sequence references",
-    thumbnail: "/assets/image3.png",
     url: "https://www.youtube.com/results?search_query=cinematic+river+sequence+references",
-    source: "Curated fallback",
   },
   {
     id: "demo-2",
     title: "Editorial pacing and mood montage inspiration",
-    thumbnail: "/assets/image4.png",
     url: "https://www.youtube.com/results?search_query=editorial+pacing+mood+montage",
-    source: "Curated fallback",
   },
   {
     id: "demo-3",
     title: "Production design and palette reference search",
-    thumbnail: "/assets/image1.png",
     url: "https://www.youtube.com/results?search_query=production+design+palette+reference",
-    source: "Curated fallback",
   },
   {
     id: "demo-4",
     title: "Ambient score and dialogue balance examples",
-    thumbnail: "/assets/image2.png",
     url: "https://www.youtube.com/results?search_query=ambient+score+dialogue+balance",
-    source: "Curated fallback",
   },
 ];
 

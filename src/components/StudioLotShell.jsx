@@ -43,7 +43,6 @@ export function StudioLotShell({ activeScene, scenes, onSceneChange }) {
               className={`shell-dock__button ${scene.id === activeScene.id ? "is-active" : ""}`}
               onClick={() => onSceneChange(scene.id)}
             >
-              <span className="shell-dock__glyph">{scene.glyph}</span>
               <span className="shell-dock__label">{scene.navLabel}</span>
             </button>
           ))}
