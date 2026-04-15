@@ -1,0 +1,62 @@
+:root {
+  color-scheme: dark;
+  --page-bg: #13171c;
+  --panel-bg: rgba(18, 24, 30, 0.76);
+  --panel-strong: rgba(12, 17, 24, 0.9);
+  --panel-soft: rgba(24, 31, 40, 0.58);
+  --panel-border: rgba(216, 196, 140, 0.18);
+  --line-muted: rgba(255, 255, 255, 0.08);
+  --text-primary: #f4efe5;
+  --text-secondary: #c6c2bb;
+  --text-muted: #8e948f;
+  --sage: #9bb88f;
+  --sage-strong: #c5dab4;
+  --brass: #d2b576;
+  --brass-strong: #e5c88b;
+  --shadow-xl: 0 30px 100px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 22px 64px rgba(0, 0, 0, 0.32);
+  --radius-xl: 32px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --spacing-2xs: 0.35rem;
+  --spacing-xs: 0.65rem;
+  --spacing-sm: 0.9rem;
+  --spacing-md: 1.2rem;
+  --spacing-lg: 1.8rem;
+  --spacing-xl: 2.6rem;
+  --spacing-2xl: 3.8rem;
+  --shell-max: 1440px;
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-ui: "Manrope", "Segoe UI", sans-serif;
+  --ease-premium: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
