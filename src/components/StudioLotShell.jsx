@@ -4,6 +4,8 @@ import { MessagesScene } from "./MessagesScene";
 import { OnlinePlayerScene } from "./OnlinePlayerScene";
 
 export function StudioLotShell({ activeScene, scenes, onSceneChange }) {
+  const dockScenes = scenes.filter((scene) => scene.id !== "home");
+
   function renderScene() {
     switch (activeScene.id) {
       case "library":
@@ -20,35 +22,33 @@ export function StudioLotShell({ activeScene, scenes, onSceneChange }) {
 
   return (
     <div className="studiolot-shell">
-      <header className="shell-header">
-        <div className="shell-header__brand">
-          <p className="shell-header__kicker">StudioLot / Concept Rebuild</p>
-          <h1 className="shell-header__title">A cinematic collaboration floor for film and TV teams.</h1>
-        </div>
-
-        <div className="shell-header__status">
-          <span className="shell-header__status-label">Active scene</span>
-          <span className="shell-header__status-value">{activeScene.navLabel}</span>
-        </div>
-      </header>
-
-      <main className="shell-stage" key={activeScene.id}>
+      <main className={`shell-stage shell-stage--${activeScene.id}`} key={activeScene.id}>
         {renderScene()}
       </main>
 
-      <nav className="shell-dock" aria-label="StudioLot sections">
-        {scenes.map((scene) => (
-          <button
-            key={scene.id}
-            type="button"
-            className={`shell-dock__button ${scene.id === activeScene.id ? "is-active" : ""}`}
-            onClick={() => onSceneChange(scene.id)}
-          >
-            <span className="shell-dock__glyph">{scene.glyph}</span>
-            <span className="shell-dock__label">{scene.navLabel}</span>
-          </button>
-        ))}
-      </nav>
+      <footer className="shell-footer">
+        <button
+          type="button"
+          className={`shell-brand ${activeScene.id === "home" ? "is-active" : ""}`}
+          onClick={() => onSceneChange("home")}
+        >
+          STUDIOLOT
+        </button>
+
+        <nav className="shell-dock" aria-label="StudioLot sections">
+          {dockScenes.map((scene) => (
+            <button
+              key={scene.id}
+              type="button"
+              className={`shell-dock__button ${scene.id === activeScene.id ? "is-active" : ""}`}
+              onClick={() => onSceneChange(scene.id)}
+            >
+              <span className="shell-dock__glyph">{scene.glyph}</span>
+              <span className="shell-dock__label">{scene.navLabel}</span>
+            </button>
+          ))}
+        </nav>
+      </footer>
     </div>
   );
 }

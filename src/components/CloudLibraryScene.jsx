@@ -53,7 +53,7 @@ export function CloudLibraryScene({ scene }) {
     requestUrl.searchParams.set("part", "snippet");
     requestUrl.searchParams.set("type", "video");
     requestUrl.searchParams.set("order", "relevance");
-    requestUrl.searchParams.set("maxResults", "6");
+    requestUrl.searchParams.set("maxResults", "4");
     requestUrl.searchParams.set("q", trimmedQuery);
     requestUrl.searchParams.set("key", apiKey);
 
@@ -120,7 +120,7 @@ export function CloudLibraryScene({ scene }) {
           <div className="search-workspace__overlay-card">
             <p className="search-workspace__overlay-label">Live Reference Intake</p>
             <p className="search-workspace__overlay-text">
-              Preserve the concept of importing web inspiration directly into the creative workflow.
+              Pull web inspiration into the workspace without leaving the demo.
             </p>
           </div>
         </div>
@@ -129,7 +129,7 @@ export function CloudLibraryScene({ scene }) {
           <div className="search-panel__header">
             <div>
               <p className="search-panel__kicker">Reference Search</p>
-              <h3 className="search-panel__title">Import YouTube references into the board.</h3>
+              <h3 className="search-panel__title">Import YouTube references.</h3>
             </div>
             <span className={`search-panel__status-pill search-panel__status-pill--${status}`}>
               {apiKey ? "Live mode" : "Fallback mode"}
@@ -170,7 +170,7 @@ export function CloudLibraryScene({ scene }) {
           <p className={`search-panel__message search-panel__message--${status}`}>{statusMessage}</p>
 
           <div className="search-results">
-            {visibleResults.map((result) => (
+            {visibleResults.slice(0, 4).map((result) => (
               <a
                 key={result.id}
                 className="search-card"
